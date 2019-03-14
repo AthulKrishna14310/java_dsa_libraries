@@ -1,4 +1,5 @@
 package com.integrals.lib;
+import com.integrals.lib.Helper.BinarySearchTreeImplementation;
 import com.integrals.lib.Helper.LinkedListImplementation;
 import com.integrals.lib.Helper.QueueImplementation;
 import com.integrals.lib.Helper.StackImplementation;
@@ -12,7 +13,7 @@ class MyClass
 
     public static void main (String[] args) throws java.lang.Exception {
 
-        new LinkedListImplementation().Implement();
+        new BinarySearchTreeImplementation().Implement();
 
     }
 }
