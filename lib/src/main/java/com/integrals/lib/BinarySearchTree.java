@@ -4,18 +4,21 @@ public class BinarySearchTree {
     private BNode newNode;
     private BNode root;
     private BNode current;
-    private BNode parent;
+
 
     public void insertNode(int data){
     newNode=new BNode(data);
+
     if(root==null){
         root=newNode;
       }
     else{
-      current=root;
-      while(true){
-        parent=current;
-        if(data<current.getData()) {
+        current=root;
+        BNode parent;
+
+        while(true){
+            parent=current;
+          if(data<current.getData()) {
             current = current.getLeftChild();
             if (current == null) {
                 parent.setLeftChild(newNode);
@@ -33,42 +36,41 @@ public class BinarySearchTree {
     }
 
     public void preOrderTraversal(BNode localRoot){
-        if(localRoot!=null){
-            System.out.println(localRoot.getData()+"-->");
+        if(localRoot==null) {
+            return;
+        }else{
+            System.out.print(localRoot.getData()+"-->");
             preOrderTraversal(localRoot.getLeftChild());
             preOrderTraversal(localRoot.getRightChild());
 
-        }else {
-            System.out.println("No Elements");
         }
     }
     public void inOrderTraversal(BNode localRoot){
-        if(localRoot!=null){
+        if(localRoot==null) {
+            return;
+        }else{
             inOrderTraversal(localRoot.getLeftChild());
-            System.out.println(localRoot.getData()+"-->");
+            System.out.print(localRoot.getData()+"-->");
             inOrderTraversal(localRoot.getRightChild());
-        }else {
-            System.out.println("No Elements");
-        }
+             }
     }
 
     public void postOrderTraversal(BNode localRoot){
-        if(localRoot!=null){
+        if(localRoot==null){return;}
+        else{
             postOrderTraversal(localRoot.getLeftChild());
             postOrderTraversal(localRoot.getRightChild());
-            System.out.println(localRoot.getData()+"-->");
+            System.out.print(localRoot.getData()+"-->");
 
-        }else {
-            System.out.println("No Elements");
         }
     }
     public void traversePreOrder(){
-        preOrderTraversal(parent);
+        preOrderTraversal(root);
     }
     public void traversePostOrder(){
-        postOrderTraversal(parent);
+        postOrderTraversal(root);
     }
     public void traverseinOrder(){
-        inOrderTraversal(parent);
+        inOrderTraversal(root);
     }
 }
