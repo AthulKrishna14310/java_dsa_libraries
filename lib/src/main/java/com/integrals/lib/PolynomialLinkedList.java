@@ -27,6 +27,14 @@ public class PolynomialLinkedList {
         this.last = last;
     }
 
+    public void setFirst(PolyNode first) {
+        this.first = first;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public void insert(int coefficient, int exponent){
 
         PolyNode node=new PolyNode(coefficient,exponent);
