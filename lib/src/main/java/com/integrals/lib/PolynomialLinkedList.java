@@ -61,9 +61,10 @@ public class PolynomialLinkedList {
     public void display(){
         PolyNode temp=first;
         while (temp!=null){
-            System.out.println(temp.getCoefficient()+"x^"+temp.getExponent());
+            System.out.print(temp.getCoefficient()+"x^"+temp.getExponent()+"+");
             temp=temp.getNext();
         }
+
     }
 
 
