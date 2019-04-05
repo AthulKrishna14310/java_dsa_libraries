@@ -1,18 +1,32 @@
 package com.integrals.lib;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class GraphTraversal {
     private String[] vertices;
     private int size;
     private Scanner scanner;
     private int[][] matrixGraph;
+    private String[] connectedVertices;
+    private Queue<String> stringQueue;
+    private String[] visitedVertices;
+    private  Queue<String> tempQueue;
 
     public GraphTraversal( int size) {
         this.size = size;
         this.scanner=new Scanner(System.in);
-        vertices=new String[size];
+        this.vertices=new String[size];
         this.matrixGraph=new int[size][size];
+        this.connectedVertices=new String[size];
+        this.stringQueue=new LinkedList<>();
+        this.visitedVertices=new String[size];
+        this.tempQueue=new LinkedList<>();
     }
 
     public String[] getVertices() {
@@ -91,4 +105,57 @@ public class GraphTraversal {
     private void print(String ch){
         System.out.print(ch);
     }
+
+    public void addConnectedVertices(String initial){
+        int k=0;
+        int index=0,i = 0;
+        try {
+            for( i=0;i<vertices.length;i++){
+                if(initial.contentEquals(vertices[i])){
+                    break;
+                }
+            }
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        index=i;
+
+       for(int j=0;j<vertices.length;j++){
+           if(matrixGraph[j][index]==1){
+                    connectedVertices[k] = vertices[j];
+                    k++;
+                 }
+
+       }
+       for (int x=0;x<k;x++){
+               if(stringQueue.contains(connectedVertices[x]))
+               {
+                   // do nothing
+               }else{
+                   if(tempQueue.contains(connectedVertices[x])){
+
+                   }
+                   else {
+                        stringQueue.add(connectedVertices[x]);
+                        print(" , "+connectedVertices[x]);
+                        }
+                      }
+
+                    }
+           }
+
+
+
+    public void breadthFirstSearch(String start) {
+          stringQueue.add(start);
+          print(start);
+          while(!stringQueue.isEmpty()) {
+              start=stringQueue.peek();
+              addConnectedVertices(start);
+              tempQueue.add(stringQueue.peek());
+              stringQueue.remove();
+
+          }
+        }
 }
