@@ -9,7 +9,7 @@ public class BinarySearchTreeImplementation {
     private Scanner scanner=new Scanner(System.in);
     private BinarySearchTree Object=new BinarySearchTree();
 
-    public void Implement() {
+    public void implement() {
         int Choice = 0;
         while (Choice != 4) {
             System.out.println("1.Insert");
