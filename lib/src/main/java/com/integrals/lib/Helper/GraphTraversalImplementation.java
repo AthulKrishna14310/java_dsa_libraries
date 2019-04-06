@@ -17,9 +17,11 @@ public class GraphTraversalImplementation {
         int size=scanner.nextInt();
         graphTraversal=new GraphTraversal(size);
         graphTraversal.enterGraph(size);
-        System.out.print("Breadth first Search ");
         System.out.print("Starting Node ?");
         String d=scanner.next();
+        System.out.print("\n\nBreadth first Search\n");
         graphTraversal.breadthFirstSearch(d);
+        System.out.print("\n\nDepth first Search\n");
+        graphTraversal.depthFirstSearch(d);
     }
 }

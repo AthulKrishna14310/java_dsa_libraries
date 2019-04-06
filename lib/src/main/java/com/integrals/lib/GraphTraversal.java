@@ -1,9 +1,6 @@
 package com.integrals.lib;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
@@ -17,6 +14,10 @@ public class GraphTraversal {
     private Queue<String> stringQueue;
     private String[] visitedVertices;
     private  Queue<String> tempQueue;
+    private Stack<String> stringStack;
+    private int DFS=101;
+    private int BFS=102;
+    private Stack<String> visitedStack;
 
     public GraphTraversal( int size) {
         this.size = size;
@@ -27,6 +28,8 @@ public class GraphTraversal {
         this.stringQueue=new LinkedList<>();
         this.visitedVertices=new String[size];
         this.tempQueue=new LinkedList<>();
+        this.stringStack=new Stack<>();
+        this.visitedStack=new Stack<>();
     }
 
     public String[] getVertices() {
@@ -106,44 +109,87 @@ public class GraphTraversal {
         System.out.print(ch);
     }
 
-    public void addConnectedVertices(String initial){
-        int k=0;
-        int index=0,i = 0;
-        try {
-            for( i=0;i<vertices.length;i++){
-                if(initial.contentEquals(vertices[i])){
-                    break;
+    public void addConnectedVertices(String initial,int mode){
+        if(mode==BFS) {
+            int k = 0;
+            int index = 0, i = 0;
+            try {
+                for (i = 0; i < vertices.length; i++) {
+                    if (initial.contentEquals(vertices[i])) {
+                        break;
+                    }
+                }
+
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            index = i;
+
+            for (int j = 0; j < vertices.length; j++) {
+                if (matrixGraph[j][index] == 1) {
+                    connectedVertices[k] = vertices[j];
+                    k++;
+                }
+
+            }
+            for (int x = 0; x < k; x++) {
+                if (stringQueue.contains(connectedVertices[x])) {
+                    // do nothing
+                } else {
+                    if (tempQueue.contains(connectedVertices[x])) {
+
+                    } else {
+                        stringQueue.add(connectedVertices[x]);
+                        print(" , " + connectedVertices[x]);
+                    }
+                }
+
+            }
+
+
+        }else if (mode==DFS) {
+            int i=0;
+            int index;
+            int k=0;
+            try {
+                for (i = 0; i < vertices.length; i++) {
+                    if (initial.contentEquals(vertices[i])) {
+                        break;
+                    }
+                }
+
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            index = i;
+
+
+            for (int j = 0; j < vertices.length; j++) {
+                if (matrixGraph[j][index] == 1) {
+                    connectedVertices[k] = vertices[j];
+                    k++;
+                }
+
+            }
+
+
+            for(int j=0;j<k;j++)
+            {
+                if(visitedStack.contains(connectedVertices[j])){
+
+                }else{
+                    if(!stringStack.contains(connectedVertices[k])) {
+                        stringStack.push(connectedVertices[j]);
+                        print(" , "+stringStack.peek());
+                    }
+
                 }
             }
 
-        }catch (NullPointerException e){
-            e.printStackTrace();
         }
-        index=i;
 
-       for(int j=0;j<vertices.length;j++){
-           if(matrixGraph[j][index]==1){
-                    connectedVertices[k] = vertices[j];
-                    k++;
-                 }
 
-       }
-       for (int x=0;x<k;x++){
-               if(stringQueue.contains(connectedVertices[x]))
-               {
-                   // do nothing
-               }else{
-                   if(tempQueue.contains(connectedVertices[x])){
-
-                   }
-                   else {
-                        stringQueue.add(connectedVertices[x]);
-                        print(" , "+connectedVertices[x]);
-                        }
-                      }
-
-                    }
-           }
+    }
 
 
 
@@ -152,10 +198,23 @@ public class GraphTraversal {
           print(start);
           while(!stringQueue.isEmpty()) {
               start=stringQueue.peek();
-              addConnectedVertices(start);
+              addConnectedVertices(start,BFS);
               tempQueue.add(stringQueue.peek());
               stringQueue.remove();
 
-          }
+            }
         }
+
+
+    public void depthFirstSearch(String start){
+           stringStack.push(start);
+           print(start);
+            while (!stringStack.isEmpty()){
+                visitedStack.push(stringStack.peek());
+                addConnectedVertices(start,DFS);
+                start=stringStack.peek();
+                stringStack.pop();
+           }
+
+    }
 }
