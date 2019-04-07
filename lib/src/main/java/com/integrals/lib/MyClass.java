@@ -1,21 +1,22 @@
 package com.integrals.lib;
-import com.integrals.lib.Helper.BinarySearchTreeImplementation;
 import com.integrals.lib.Helper.DijistrasShortestPathImplementation;
-import com.integrals.lib.Helper.GraphTraversalImplementation;
-import com.integrals.lib.Helper.LinkedListImplementation;
-import com.integrals.lib.Helper.PolynomialAdditionImplementation;
-import com.integrals.lib.Helper.PostFixConversionImplementation;
-import com.integrals.lib.Helper.QueueImplementation;
-import com.integrals.lib.Helper.StackImplementation;
 
 import java.lang.*;
-
+import java.util.Scanner;
 
 
 class MyClass
 {
 
     public static void main (String[] args) throws java.lang.Exception {
-       new PostFixConversionImplementation().implement();
+        int[] arr=new int[5];
+                arr[0]=4;
+                arr[1]=3;
+                arr[2]=10;
+                arr[3]=2;
+                arr[4]=11;
+    new Sort().mergeSort(arr,0,arr.length-1);
+    new Sort().print(arr);
+
     }
 }
