@@ -15,7 +15,7 @@ class MyClass
                 arr[2]=10;
                 arr[3]=2;
                 arr[4]=11;
-    new Sort().mergeSort(arr,0,arr.length-1);
+    new Sort().quickSort(arr,0,arr.length-1);
     new Sort().print(arr);
 
     }
