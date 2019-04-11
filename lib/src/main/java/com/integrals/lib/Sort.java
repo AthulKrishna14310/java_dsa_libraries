@@ -12,9 +12,40 @@ public class Sort {
                 }
                 array[j+1]=key;
             }
-            print(array);
-        }
+           }
 
+    public void bubbleSort(int[] array){
+        for(int i=0;i<array.length;i++){
+            for(int j=0;j<array.length-i-1;j++){
+                if (array[j] > array[j+1]) {
+                    int temp=array[j];
+                    array[j]=array[j+1];
+                    array[j+1]=temp;
+                }
+            }
+        }
+    }
+
+    public void selectionSort(int arr[])
+    {
+        int n = arr.length;
+
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n-1; i++)
+        {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (arr[j] < arr[min_idx])
+                    min_idx = j;
+
+            // Swap the found minimum element with the first
+            // element
+            int temp = arr[min_idx];
+            arr[min_idx] = arr[i];
+            arr[i] = temp;
+        }
+    }
 
     private void merge(int[] array, int left, int middle, int right) {
        int n1=middle-left+1;
